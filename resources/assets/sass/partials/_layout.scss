@@ -1,0 +1,54 @@
+nav {
+  background: $ghost;
+}
+
+.nav__title {
+}
+.nav__mainnav {
+}
+
+.header {
+  padding: 2rem 0 4rem;
+  background: $primary-color;
+  h1 {
+    text-align: center;
+  }
+}
+
+p.subheader {
+  font-style: italic;
+
+  color: inherit;
+  margin: 0 0 2rem;
+}
+
+p.subheader--main {
+  text-align: center;
+
+}
+
+
+.info-block {
+  padding: 1rem;
+  background: rgba(255,255,255,0.2);
+  width: 98%;
+  margin: 0 auto;
+}
+
+.info-block--main {
+
+}
+
+.info-block--schedule{
+  box-shadow: 0 2px 4px 0 rgba(0,0,0,0.5);
+}
+
+.info-block__section {
+  background: $silver;
+  margin: 1px;
+}
+
+.info-block__section:last-child {
+//  background: red;
+}
+

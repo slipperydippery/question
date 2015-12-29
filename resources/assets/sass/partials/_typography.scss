@@ -1,0 +1,26 @@
+@font-face {
+  font-family: 'merloround_regular';
+  src: url('fonts/merlo-roundregular-webfont.eot');
+  src: url('fonts/merlo-roundregular-webfont.eot?#iefix') format('embedded-opentype'),
+  url('fonts/merlo-roundregular-webfont.woff2') format('woff2'),
+  url('fonts/merlo-roundregular-webfont.woff') format('woff'),
+  url('fonts/merlo-roundregular-webfont.ttf') format('truetype'),
+  url('fonts/merlo-roundregular-webfont.svg#merloround_regular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+
+}
+@font-face {
+  font-family: 'merloround_bold';
+  src: url('merlo-roundbold-webfont.eot');
+  src: url('merlo-roundbold-webfont.eot?#iefix') format('embedded-opentype'),
+  url('merlo-roundbold-webfont.woff2') format('woff2'),
+  url('merlo-roundbold-webfont.woff') format('woff'),
+  url('merlo-roundbold-webfont.ttf') format('truetype'),
+  url('merlo-roundbold-webfont.svg#merloround_bold') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+.nav__title h1 {
+  color: $primary-color;
+}

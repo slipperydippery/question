@@ -1,0 +1,66 @@
+/* ==========================================================================
+   Login Form
+   ========================================================================== */
+/*
+| Sizes
+*/
+.form-wrap {
+  text-align: left;
+}
+
+
+/*
+| Native Core elements
+*/
+
+form {
+  display: block;
+  positon: relative;
+}
+
+input,
+textarea {
+  box-sizing: border-box;
+  color: inherit;
+  font-family: inherit;
+  padding: .8em 0 10px .8em;
+  border: 1px solid #cfcfcf;
+  outline: 0;
+  display: inline-block;
+  margin: 0 0 .8em;
+  padding-right: 2em;
+  width: 100%;
+}
+
+label {
+  line-height: 3rem;
+}
+
+input[type=checkbox] {
+  margin: 0 1rem;
+  width: auto;
+}
+
+
+/*
+| Extended Core Elements
+*/
+
+.errormessage {
+  color: #c72626;
+  font-family: $base-font-family-small;
+  font-size: $base-font-size-small;
+  margin-bottom: .6em;
+}
+
+
+/*
+| Specific Forms
+*/
+
+
+/*
+|  checkbox ul
+*/
+
+
