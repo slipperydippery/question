@@ -14,4 +14,9 @@ class Quest extends Model
     protected $fillable = [
         'title', 'description', 'user_id',
     ];
+
+    public function questions()
+    {
+        return $this->hasMany('App\Question')->orderBy('order');
+    }    
 }

@@ -1,0 +1,32 @@
+.questions {
+	margin: 0;
+}
+
+.question {
+	position: relative;
+	list-style: none;
+	margin: 0 0 .5em 0;
+	padding: 1em;
+	border: 1px solid $iron;
+	border-radius: 0.5em;
+}
+
+.question_order {
+	position: absolute;
+	right: 1em;
+	width: 4em;
+    height: 1.5rem;
+    background: #008CBA;
+    color: #fff;
+
+    font-size: .8em;
+}
+
+.question_order--up {
+	top: 1em;
+}
+
+.question_order--down {
+	bottom: 1em;
+}
+

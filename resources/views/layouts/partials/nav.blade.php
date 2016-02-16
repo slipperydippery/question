@@ -16,11 +16,25 @@
                 </a>
             </li>
             <li class="has-dropdown">
+                <a href="#">Questionnaires</a>
+                <ul class="dropdown">
+                    <li> <a href=" {{ URL::route('quests.index')}} "> List Questionnaire </a> </li>
+                    <li> <a href=" {{ URL::route('quests.create')}} "> Create Questionnaire </a> </li>
+                </ul>
+            </li>
+            <li class="has-dropdown">
+                <a href="#">Questionnaires</a>
+                <ul class="dropdown">
+                    <li> <a href=" {{ URL::route('quests.create')}} "> Create Questionnaire </a> </li>
+                    <li> <a href=" {{ URL::route('quests.index')}} "> List Questionnaire </a> </li>
+                </ul>
+            </li>
+            <li class="has-dropdown">
                 <a href="#">Authentication</a>
                 <ul class="dropdown">
                     <li><a href="{{ url('/register') }}">Register</a></li>
                     <li><a href="{{ url('/login') }}">Login</a></li>
-                    <li class="active"><a href="{{ url('/logout') }}">Logout</a></li>
+                    <li><a href="{{ url('/logout') }}">Logout</a></li>
                 </ul>
             </li>
         </ul>

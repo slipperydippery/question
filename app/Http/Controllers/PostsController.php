@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Gate;
 use App\Post;
 use Illuminate\Http\Request;
-
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 

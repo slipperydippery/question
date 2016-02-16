@@ -7,15 +7,16 @@
     @foreach($quests as $quest)
         <div>
             <span>{{ $quest->title }}</span>
+                <a href=" {{ URL::route('quests.show', $quest) }} ">Show Questionnaire</a>
             <span>{{ $quest->user_id }}</span>
-            @can('update', $quest)
-                <a href="#">Edit Questionnaire</a>
-            @endcan
+                <a href=" {{ URL::route('sheets.create', $quest) }} ">Take Questionnaire</a>
         </div>
 
     @endforeach
 
-    {{ $user->id }}
+    @if(Auth::check())
+        <p> user id = {{ $user->id }} </p>
+    @endif
 
 
 @stop

@@ -1,13 +1,17 @@
+.btn {
+	border: 1px solid $primary-color;
+}
+
 .btn-primary {
   margin-top: 2rem;
   width: 100%;
   padding: .8em 0 10px .8em;
-  background-color: $primary-base;
+  background-color: $primary-color;
   border: 0;
   color: #fff;
   cursor: pointer;
   text-transform: uppercase;
 }
 .btn-primary:hover {
-  background-color: $primary-base-med-dark;
+  background-color: $primary-color;
 }

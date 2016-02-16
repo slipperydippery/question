@@ -28,4 +28,9 @@ class User extends Authenticatable
     {
         return $this->id == $related->user_id;
     }
+
+    public function sheets()
+    {
+        return $this->hasMany('App\Sheet');
+    }
 }

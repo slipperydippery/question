@@ -2,27 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use App\Quest;
+use App\Question;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Redirect;
 
-class QuestsController extends Controller
+class AnswersController extends Controller
 {
-
-   /**
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index ()
+    public function index()
     {
-        $quests = Quest::latest()->get();
-        $user = Auth::user();
-
-        return view('quests.index', compact('quests', 'user'));
+        //
     }
 
     /**
@@ -32,7 +26,6 @@ class QuestsController extends Controller
      */
     public function create()
     {
-        return view('quests.create');
     }
 
     /**
@@ -43,12 +36,7 @@ class QuestsController extends Controller
      */
     public function store(Request $request)
     {
-        $user = Auth::user();
-
-        $quest = new \App\Quest($request->all());
-        $quest->user_id = $user->id;
-        $quest->save();
-        return redirect('home');
+        //
     }
 
     /**
@@ -57,9 +45,9 @@ class QuestsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($quest)
+    public function show($id)
     {
-        return view ('quests.show', compact('quest'));
+        //
     }
 
     /**
@@ -68,9 +56,9 @@ class QuestsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($quest)
+    public function edit($id)
     {
-        return view ('quests.edit', compact('quest'));
+        //
     }
 
     /**
@@ -80,10 +68,9 @@ class QuestsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $quest)
+    public function update(Request $request, $id)
     {
-        $quest->update($request->all());
-        return Redirect::route('quests.show', compact('quest'));
+        //
     }
 
     /**
@@ -96,5 +83,4 @@ class QuestsController extends Controller
     {
         //
     }
-
 }
