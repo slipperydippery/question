@@ -16,4 +16,6 @@
     </div> <!-- #wrapper -->
 </main>
 
+@yield('additional-scripts')
+
 @include('layouts.partials.footer')

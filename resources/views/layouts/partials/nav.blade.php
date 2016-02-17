@@ -10,18 +10,13 @@
     <section class="top-bar-section">
         <!-- Right Nav Section -->
         <ul class="right">
-            <li class="active">
-                <a href="#">
-                    User Profile
-                </a>
-            </li>
-            <li class="has-dropdown">
-                <a href="#">Questionnaires</a>
-                <ul class="dropdown">
-                    <li> <a href=" {{ URL::route('quests.index')}} "> List Questionnaire </a> </li>
-                    <li> <a href=" {{ URL::route('quests.create')}} "> Create Questionnaire </a> </li>
-                </ul>
-            </li>
+            @if(!Auth::guest())
+                <li class="active">
+                    <a href="#">
+                        {{ Auth::user()->name }}
+                    </a>
+                </li>
+            @endif
             <li class="has-dropdown">
                 <a href="#">Questionnaires</a>
                 <ul class="dropdown">
@@ -32,9 +27,12 @@
             <li class="has-dropdown">
                 <a href="#">Authentication</a>
                 <ul class="dropdown">
-                    <li><a href="{{ url('/register') }}">Register</a></li>
-                    <li><a href="{{ url('/login') }}">Login</a></li>
-                    <li><a href="{{ url('/logout') }}">Logout</a></li>
+                    @if(Auth::guest())  
+                        <li><a href="{{ url('/register') }}">Register</a></li>
+                        <li><a href="{{ url('/login') }}">Login</a></li>
+                    @else
+                        <li><a href="{{ url('/logout') }}">Logout</a></li>
+                    @endif
                 </ul>
             </li>
         </ul>

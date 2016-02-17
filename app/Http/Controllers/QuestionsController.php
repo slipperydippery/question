@@ -8,6 +8,7 @@ use App\Answertype;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
 
 class QuestionsController extends Controller
@@ -51,25 +52,40 @@ class QuestionsController extends Controller
         return Redirect::route('quests.show', $request->quest_id);
     }
 
-    public function reorder(Request $request)
+    public function reorder($question)
     {
-        $question = Question::findOrFail($request->question_id);
-        if ($request->direction == 'up')
-        {
-            $question_switch = Question::having('order', '<', $question->order)->orderBy('order', 'desc')->first();
+        $input = Input::get('order');
+        $i = 1;
+
+        $question = Question::findOrFail($question);
+
+        foreach($input as $order) {
+            $question = Question::findOrFail($order);
+            $question->order = $i;
+            $question->save();
+            $i++;
         }
-        else
-        {
-            $question_switch = Question::having('order', '>', $question->order)->orderBy('order', 'asc')->first();
-        }
-        $switch_order = $question_switch->order;
-        $question_switch->order = $question->order;
-        $question->order = $switch_order;
-        $question->save();
-        $question_switch->save();
+
+        return Redirect::route('quests.show', $question->quest);
+
+        // $question = Question::findOrFail($request->question_id);
+        // if ($request->direction == 'up')
+        // {
+        //     $question_switch = Question::having('order', '<', $question->order)->orderBy('order', 'desc')->first();
+        // }
+        // else
+        // {
+        //     $question_switch = Question::having('order', '>', $question->order)->orderBy('order', 'asc')->first();
+        // }
+        // $switch_order = $question_switch->order;
+        // $question_switch->order = $question->order;
+        // $question->order = $switch_order;
+        // $question->save();
+        // $question_switch->save();
         
-        return Redirect::route('quests.show', $request->quest_id);
+        // return Redirect::route('quests.show', $request->quest_id);
     }
+
 
     /**
      * Display the specified resource.

@@ -31,11 +31,10 @@ Route::group(['middleware' => ['web']], function () {
 Route::group(['middleware' => 'web'], function () {
     Route::auth();
 
-    Route::get('/home', 'HomeController@index');
-
+    Route::get('/home', ['as' => 'home', 'uses' => 'HomeController@index']);
     Route::resource('posts', 'PostsController');
     Route::resource('quests', 'QuestsController');
-    Route::post('quests/reorder', ['as' => 'questions.reorder', 'uses' => 'QuestionsController@reorder']);
+    Route::post('quests/reorder/{question}', ['as' => 'questions.reorder', 'uses' => 'QuestionsController@reorder']);
     Route::get('questions/createforquest/{quest}', ['as' => 'questions.createforquest', 'uses' => 'QuestionsController@create']);
     Route::resource('questions', 'QuestionsController');
     Route::resource('answertypes', 'AnswertypesController');
