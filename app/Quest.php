@@ -17,6 +17,16 @@ class Quest extends Model
 
     public function questions()
     {
-        return $this->hasMany('App\Question')->orderBy('order');
+        return $this->morphMany('App\Question', 'questionable')->orderBy('order');
     }    
+
+    public function route()
+    {
+        return 'quests/' . $this->id;
+    }
+
+    public function type()
+    {
+        return 'App\\Quest';
+    }
 }

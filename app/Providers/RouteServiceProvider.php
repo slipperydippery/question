@@ -33,6 +33,7 @@ class RouteServiceProvider extends ServiceProvider
         $router->model('sheets', 'App\Sheet');
         $router->model('answeroptions', 'App\Answeroption');
         $router->model('answertypes', 'App\AnswerType');
+        $router->model('templates', 'App\Template');
     }
 
     /**

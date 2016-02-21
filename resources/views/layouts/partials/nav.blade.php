@@ -20,8 +20,10 @@
             <li class="has-dropdown">
                 <a href="#">Questionnaires</a>
                 <ul class="dropdown">
+                    <li> <a href=" {{ URL::route('quests.index')}} "> List Questionnaires </a> </li>
                     <li> <a href=" {{ URL::route('quests.create')}} "> Create Questionnaire </a> </li>
-                    <li> <a href=" {{ URL::route('quests.index')}} "> List Questionnaire </a> </li>
+                    <li> <a href=" {{ URL::route('templates.index')}} "> List Question Templates </a> </li>
+                    <li> <a href=" {{ URL::route('templates.create')}} "> Create Question Template </a> </li>
                 </ul>
             </li>
             <li class="has-dropdown">

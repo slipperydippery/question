@@ -48,7 +48,7 @@ class QuestsController extends Controller
         $quest = new \App\Quest($request->all());
         $quest->user_id = $user->id;
         $quest->save();
-        return redirect('home');
+        return redirect('quests');
     }
 
     /**
@@ -59,6 +59,7 @@ class QuestsController extends Controller
      */
     public function show($quest)
     {
+        // return $quest->questions;
         return view ('quests.show', compact('quest'));
     }
 

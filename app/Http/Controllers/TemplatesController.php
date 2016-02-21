@@ -3,14 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Question;
-use App\Answeroption;
+use App\Template;
+use App\Answertype;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 
-class AnsweroptionsController extends Controller
+class TemplatesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,7 +20,8 @@ class AnsweroptionsController extends Controller
      */
     public function index()
     {
-        //
+        $templates = Template::get();
+        return view('templates.index', compact('templates'));
     }
 
     /**
@@ -27,10 +29,10 @@ class AnsweroptionsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($question)
+    public function create()
     {
-        $question = Question::findOrFail($question);
-        return view ('answeroptions.create', compact('question'));
+        $answertypes = Answertype::lists('name', 'id');
+        return view('templates.create', compact('answertypes'));
     }
 
     /**
@@ -41,32 +43,10 @@ class AnsweroptionsController extends Controller
      */
     public function store(Request $request)
     {
-        $answeroption = New Answeroption($request->all());
-        $answeroption->save();
-        $question = $request->question_id;
-
-        return Redirect::route('questions.edit', compact('question'));
-
-    }
-
-    /**
-     * Dynamically reorder the display of questions through jquery's drag and drop with post
-     * 
-     * @return Illuminate\Http\Response
-     */
-    public function reorder()
-    {
-        $input = Input::get('order');
-        $i = 1;
-        // return $input;
-
-        foreach($input as $order) {
-            $answeroption = Answeroption::findOrFail($order);
-            $answeroption->order = $i;
-            $answeroption->save();
-            $i++;
-        }
-        return Redirect::route('questions.show', $answeroption->question);
+        $template = new Template($request->all());
+        $template->user_id = Auth::user()->id;
+        $template->save();
+        return Redirect::route('templates.index');
     }
 
     /**
@@ -75,9 +55,9 @@ class AnsweroptionsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($template)
     {
-        //
+        return view ('templates.show', compact('template'));
     }
 
     /**

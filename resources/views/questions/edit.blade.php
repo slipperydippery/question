@@ -17,20 +17,22 @@
 			</div>
 		@endif
 		@if($question->answertype->id == 2)
-			@foreach($question->answeroptions as $answeroption)
-				<div class="form-group">
-					<!-- Answer Form Input -->
-					{!! Form::label('answer', $answeroption->answer) !!}
-					{!! Form::radio('answer', $answeroption->id, null, ['class' => 'field']) !!}	
-				</div>
-			@endforeach
+			<div class="sortable">
+				@foreach($question->answeroptions->sortBy('order') as $answeroption)
+					<div class="form-group handle" id="{{ $answeroption->id }}">
+						<!-- Answer Form Input -->
+						{!! Form::radio('answer', $answeroption->id, null, ['class' => 'field']) !!}	
+						{!! Form::label('answer', $answeroption->answer) !!}
+					</div>
+				@endforeach
+			</div>
 		@endif
 		@if($question->answertype->id == 3)
 			@foreach($question->answeroptions as $answeroption)
 				<div class="form-group">
 					<!-- Answer Form Input -->
-					{!! Form::label('answer', $answeroption->answer) !!}
 					{!! Form::checkbox('answer', $answeroption->id, null, ['class' => 'field']) !!}	
+					{!! Form::label('answer', $answeroption->answer) !!}
 				</div>
 			@endforeach
 		@endif
@@ -40,7 +42,25 @@
 		<br />
 		<br />
 		<br />
-		<a href=" {{ URL::route('quests.show', $quest) }} ">Back to Questionnaire </a>
+		<a href=" {{ URL::to($question->questionable->route()) }} ">Back to Questionnaire </a>
 
 </div>
+@stop
+
+
+@section('additional-scripts')
+	<input type="hidden" id="token" value="{{ csrf_token() }}">
+
+	<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  	<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+	<script>
+		$('.sortable').sortable().bind('sortupdate', function(e, ui) {
+		var order = $('.sortable .handle').map(function(){
+			console.log($(this).attr("id"));
+        	return $(this).attr("id");
+        }).get();
+        $.post("{{ URL::route('answeroptions.reorder') }}", { order: order });
+		});
+
+	</script>
 @stop

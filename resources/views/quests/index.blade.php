@@ -1,22 +1,15 @@
 @extends('layouts.master')
 
 @section('content')
-
-    <h1>index of all quests</h1>
+<div class="row">
+    <h1>Questionnaires</h1>
 
     @foreach($quests as $quest)
         <div>
-            <span>{{ $quest->title }}</span>
-                <a href=" {{ URL::route('quests.show', $quest) }} ">Show Questionnaire</a>
-            <span>{{ $quest->user_id }}</span>
-                <a href=" {{ URL::route('sheets.create', $quest) }} ">Take Questionnaire</a>
+            <a href=" {{ URL::route('quests.show', $quest) }} ">{{ $quest->title }}</a> -- 
+            <a href=" {{ URL::route('sheets.create', $quest) }} "><i>Assign Questionnaire</i></a>
         </div>
-
     @endforeach
 
-    @if(Auth::check())
-        <p> user id = {{ $user->id }} </p>
-    @endif
-
-
+</div>
 @stop

@@ -7,7 +7,7 @@
     <meta name="author" content="Maarten de Jager">
     <meta name="description" content="LastBreath - leave treasures behind">
     <meta name="keywords" content="LastBreath, funeral, ritual">
-<meta name="csrf-token" value="{{ csrf_token() }}">
+    <meta name="csrf-token" value="{{ csrf_token() }}">
     <link href="{{ URL::asset('/css/app.css') }}" rel="stylesheet">
 
   </head>

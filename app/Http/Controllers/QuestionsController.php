@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Quest;
 use App\Question;
+use App\Template;
 use App\Answertype;
 use App\Http\Requests;
 use Illuminate\Http\Request;
@@ -33,9 +34,19 @@ class QuestionsController extends Controller
     {
         $quest = Quest::findOrFail($quest);
         $answertypes = Answertype::lists('name', 'id');
-        return view ('questions.create', compact('answertypes', 'quest'));
+        $questionable_type = 'App\\Quest';
+        $questionable_id = $quest->id;
+        return view ('questions.create', compact('answertypes', 'questionable_id', 'questionable_type'));
     }
 
+    public function createfortemplate($template)
+    {
+        $template = Template::findOrFail($template);
+        $answertypes = Answertype::lists('name', 'id');
+        $questionable_type = 'App\\Template';
+        $questionable_id = $template->id;
+        return view ('questions.create', compact('answertypes', 'questionable_id', 'questionable_type'));
+    }
 
     /**
      * Store a newly created resource in storage.
@@ -46,18 +57,20 @@ class QuestionsController extends Controller
     public function store(Request $request)
     {
         $question = new Question($request->all());
-        $question->order = (null !== $question->quest->questions) ? $question->quest->questions->count() + 1 : 1;
-        // $question->order = Question::orderBy('order', 'desc')->first()->order + 1;
+        $question->order = ($question->questionable->questions->count() > 0) ? $question->questionable->questions->sortByDesc('order')->first()->order + 1 : 1;
         $question->save();
-        return Redirect::route('quests.show', $request->quest_id);
+        return redirect($question->questionable->route());
     }
 
-    public function reorder($question)
+    /**
+     * Dynamically reorder the display of questions through jquery's drag and drop with post
+     * 
+     * @return Illuminate\Http\Response
+     */
+    public function reorder()
     {
         $input = Input::get('order');
         $i = 1;
-
-        $question = Question::findOrFail($question);
 
         foreach($input as $order) {
             $question = Question::findOrFail($order);
@@ -65,25 +78,7 @@ class QuestionsController extends Controller
             $question->save();
             $i++;
         }
-
         return Redirect::route('quests.show', $question->quest);
-
-        // $question = Question::findOrFail($request->question_id);
-        // if ($request->direction == 'up')
-        // {
-        //     $question_switch = Question::having('order', '<', $question->order)->orderBy('order', 'desc')->first();
-        // }
-        // else
-        // {
-        //     $question_switch = Question::having('order', '>', $question->order)->orderBy('order', 'asc')->first();
-        // }
-        // $switch_order = $question_switch->order;
-        // $question_switch->order = $question->order;
-        // $question->order = $switch_order;
-        // $question->save();
-        // $question_switch->save();
-        
-        // return Redirect::route('quests.show', $request->quest_id);
     }
 
 
@@ -106,9 +101,10 @@ class QuestionsController extends Controller
      */
     public function edit($question)
     {        
-        $quest = Quest::findOrFail($question->quest_id);
         $answertypes = Answertype::lists('name', 'id');
-        return view ('questions.edit', compact('question', 'answertypes', 'quest'));
+        $questionable_id = $question->questionable->id;
+        $questionable_type = $question->questionable->type();
+        return view ('questions.edit', compact('question', 'answertypes', 'questionable_id', 'questionable_type'));
     }
 
     /**
@@ -121,7 +117,7 @@ class QuestionsController extends Controller
     public function update(Request $request, $question)
     {
         $question->update($request->all());
-        return Redirect::route('questions.edit', $question);
+        return redirect($question->questionable->route());
     }
 
     /**

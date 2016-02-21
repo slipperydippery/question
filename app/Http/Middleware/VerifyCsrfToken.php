@@ -13,6 +13,7 @@ class VerifyCsrfToken extends BaseVerifier
      */
     protected $except = [
         '/test',
-        '/quests/reorder/*'
+        '/quests/reorder/',
+        '/answeroptions/reorder/'
     ];
 }

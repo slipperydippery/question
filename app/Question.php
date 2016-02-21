@@ -12,7 +12,8 @@ class Question extends Model
     	'clarification', 
     	'order',
     	'answertype_id',
-    	'quest_id', 
+    	'questionable_id', 
+        'questionable_type',
     	'created_at',
     	'updated_at'
     ];
@@ -27,8 +28,8 @@ class Question extends Model
         return $this->belongsTo('App\Answertype');
     }
 
-    public function quest()
+    public function questionable()
     {
-    	return $this->belongsTo('App\Quest');
+        return $this->morphTo();
     }
 }

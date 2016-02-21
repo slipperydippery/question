@@ -3,14 +3,13 @@
 @section('content')
 <div class="row">
 
+	<h1>{{ $template->title }}</h1>
 
-	<h1 class="header">{{ $quest->title }}</h1>
-	<h3><i>{{  $quest->description }}</i></h3>
-	<a href=" {{ URL::route('quests.edit', $quest) }} ">edit title</a>
+	<span> {{ $template->clarification }} </span>
 
-	<ul class="questionables sortable" id="sortable">
-	@foreach($quest->questions as $key => $question)
-		<li class="questionable handle" id="{{ $question->id }}">
+	<ul class="sortable questionables">
+	@foreach($template->questions as $question)
+		<li class="handle questionable" id="{{ $question->id }}">
 			{{ $question->question }}<br />
 			@if($question->answertype->name == "text")
 				<div class="form-group">
@@ -25,19 +24,16 @@
 					</li>
 				@endforeach
 			</ul>
-		
 		</li>
 	@endforeach
 	</ul>
-	<ul class="questionionables">
-		<li class="questionable">
-			<a href=" {{ URL::route('questions.createforquest', $quest) }} ">add a question</a>
-		</li>
-	</ul>
 
+	<a href=" {{ URL::route('questions.createfortemplate', $template) }} ">Add a new question</a>
 
 </div>
 @stop
+
+
 
 @section('additional-scripts')
 	<input type="hidden" id="token" value="{{ csrf_token() }}">

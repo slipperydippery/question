@@ -16,8 +16,12 @@
     {!! Form::select('answertype_id', $answertypes, null, ['class' => 'form-control']) !!}
 </div>
 
-<!-- Hidden quest_id Type Form Input -->
-{!! Form::hidden('quest_id', $quest->id, null) !!}
+
+<!-- Hidden questionable_id Type Form Input -->
+{!! Form::hidden('questionable_id', $questionable_id, null) !!}
+
+<!-- Hidden questionable_type Type Form Input -->
+{!! Form::hidden('questionable_type', $questionable_type, null) !!}
 
 <!-- Hidden 'template_id' Type Form Input -->
 {!! Form::hidden('template_id', null, null) !!}

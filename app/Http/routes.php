@@ -34,10 +34,13 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('/home', ['as' => 'home', 'uses' => 'HomeController@index']);
     Route::resource('posts', 'PostsController');
     Route::resource('quests', 'QuestsController');
-    Route::post('quests/reorder/{question}', ['as' => 'questions.reorder', 'uses' => 'QuestionsController@reorder']);
+    Route::post('quests/reorder/', ['as' => 'questions.reorder', 'uses' => 'QuestionsController@reorder']);
     Route::get('questions/createforquest/{quest}', ['as' => 'questions.createforquest', 'uses' => 'QuestionsController@create']);
+    Route::get('questions/createfortemplate/{template}', ['as' => 'questions.createfortemplate', 'uses' => 'QuestionsController@createfortemplate']);
+    Route::resource('templates', 'TemplatesController');
     Route::resource('questions', 'QuestionsController');
     Route::resource('answertypes', 'AnswertypesController');
+    Route::post('answeroptions/reorder/', ['as' => 'answeroptions.reorder', 'uses' => 'AnsweroptionsController@reorder']);
     Route::get('answeroptions/createforquestion/{question}', ['as' => 'answeroptions.createforquestion', 'uses' => 'AnsweroptionsController@create']);
     Route::resource('answeroptions', 'AnsweroptionsController');
     Route::get('users/{users}/sheets', ['as' => 'users.sheets', 'uses' => 'SheetsController@index']);
