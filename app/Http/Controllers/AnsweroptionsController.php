@@ -45,7 +45,7 @@ class AnsweroptionsController extends Controller
         $answeroption->save();
         $question = $request->question_id;
 
-        return Redirect::route('questions.edit', compact('question'));
+        return Redirect::route('questions.show', compact('question'));
 
     }
 

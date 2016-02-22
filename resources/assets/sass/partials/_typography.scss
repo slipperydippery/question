@@ -21,6 +21,13 @@
   font-weight: normal;
   font-style: normal;
 }
+
+@import url(https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic);
+
 .nav__title h1 {
   color: $primary-color;
+}
+
+h1 {
+  font-weight: 700;
 }

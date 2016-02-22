@@ -1,18 +1,18 @@
 <!-- Question Form Input -->
 <div class="form-group">
-	{!! Form::label('question', 'Question:') !!}
+	{!! Form::label('question', 'Vraag:') !!}
 	{!! Form::text('question', null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- clarification Form Input -->
 <div class="form-group">
-	{!! Form::label('clarification', 'clarification:') !!}
+	{!! Form::label('clarification', 'toelichting:') !!}
 	{!! Form::text('clarification', null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Answer Type Form Input -->
 <div class="form-group">
-    {!! Form::label('answertype_id', 'Answer Type:') !!}
+    {!! Form::label('answertype_id', 'Type Antwoord:') !!}
     {!! Form::select('answertype_id', $answertypes, null, ['class' => 'form-control']) !!}
 </div>
 
@@ -30,7 +30,7 @@
 
 <!-- Add Submit Field -->
 <div class="form-group">
-    {!! Form::submit($submittext, ['class' => 'btn form-control']) !!}
+    {!! Form::submit($submittext, ['class' => 'button form-control']) !!}
 </div>
 
 

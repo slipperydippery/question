@@ -3,11 +3,11 @@
 @section('content')
 <div class="row">
 
-	<h1>Open questionnaire <i>{{ $quest->title }}</i> for:</h1>
+	<h1>Wijs <i>{{ $quest->title }}</i> toe aan:</h1>
 	{!! Form::open(['route' => 'sheets.store']) !!}
 		<!-- User Form Input -->
-		<div class="form-group">
-		    {!! Form::label('user_id', 'User:') !!}
+		<div class="form-group large-6 small-12">
+		    {!! Form::label('user_id', 'Gebruiker:') !!}
 		    {!! Form::select('user_id', $users, false, ['class' => 'form-control']) !!}
 		</div>
 
@@ -16,7 +16,7 @@
 		
 		<!-- Add Submit Field -->
 		<div class="form-group">
-		    {!! Form::submit('Open questionnaire', ['class' => 'btn form-control']) !!}
+		    {!! Form::submit('Wijs toe', ['class' => 'button form-control']) !!}
 		</div>
 
 	{!! Form::close() !!}

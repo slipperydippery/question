@@ -3,10 +3,10 @@
 @section('content')
 <div class="row">
 
-	Create an answer for {{ $question->title }}
+	Creeer een antwoord voor <i>{{ $question->question }}</i>
 
 	{!! Form::open(['route' => 'answeroptions.store']) !!}
-		@include('answeroptions.partials.form', ['submittext' => 'Add an answer option'])
+		@include('answeroptions.partials.form', ['submittext' => 'Voeg antwoord toe'])
 	{!! Form::close() !!}
 
 </div>

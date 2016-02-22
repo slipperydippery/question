@@ -1,12 +1,12 @@
 <!-- Answer Form Input -->
 <div class="form-group">
-	{!! Form::label('answer', 'Answer:') !!}
+	{!! Form::label('answer', 'Antwoord:') !!}
 	{!! Form::text('answer', null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Clarification Form Input -->
 <div class="form-group">
-	{!! Form::label('clarification', 'Clarification:') !!}
+	{!! Form::label('clarification', 'Toelichting:') !!}
 	{!! Form::text('clarification', null, ['class' => 'form-control']) !!}
 </div>
 
@@ -15,5 +15,5 @@
 
 <!-- Add Submit Field -->
 <div class="form-group">
-    {!! Form::submit($submittext, ['class' => 'btn form-control']) !!}
+    {!! Form::submit($submittext, ['class' => 'button form-control']) !!}
 </div>

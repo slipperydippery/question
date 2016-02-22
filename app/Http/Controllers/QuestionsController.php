@@ -88,9 +88,9 @@ class QuestionsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($question)
     {
-        //
+        return view ('questions.show', compact('question'));
     }
 
     /**
@@ -117,7 +117,8 @@ class QuestionsController extends Controller
     public function update(Request $request, $question)
     {
         $question->update($request->all());
-        return redirect($question->questionable->route());
+        return Redirect::route('questions.show', $question);
+        // return redirect($question->questionable->route());
     }
 
     /**

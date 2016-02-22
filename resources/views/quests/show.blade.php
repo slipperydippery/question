@@ -6,32 +6,51 @@
 
 	<h1 class="header">{{ $quest->title }}</h1>
 	<h3><i>{{  $quest->description }}</i></h3>
-	<a href=" {{ URL::route('quests.edit', $quest) }} ">edit title</a>
+	<a href=" {{ URL::route('quests.edit', $quest) }} " class="edit">Bewerk titel</a><br /><br /><br />
 
 	<ul class="questionables sortable" id="sortable">
 	@foreach($quest->questions as $key => $question)
 		<li class="questionable handle" id="{{ $question->id }}">
-			{{ $question->question }}<br />
-			@if($question->answertype->name == "text")
+			<h4>{{ $question->question }}</h4>
+			@if($question->answertype->id == 1)
 				<div class="form-group">
 					{!! Form::text('dummy', null, ['class' => 'form-control']) !!}
 				</div>
 			@endif
-			<a href=" {{ URL::route('questions.edit', $question) }} ">edit question</a>
+			@if($question->answertype->id == 2)
+				<fieldset class="large-12 columns">
+		          	<legend>Uw antwoord</legend>
+					@foreach($question->answeroptions as $answeroption)
+						<div class="form-group large-12">
+							<!-- Answer Form Input -->
+							{!! Form::radio('answer', $answeroption->id, null, ['class' => 'field']) !!}	
+							{!! Form::label('answer', $answeroption->answer) !!}
+						</div>
+					@endforeach
+				</fieldset>
+          	@endif
+          	@if($question->answertype->id ==3)
+				<fieldset class="large-12 columns">
+		          	<legend>Uw antwoord</legend>
+					@foreach($question->answeroptions as $answeroption)
+						<div class="form-group large-12"">
+							<!-- Answer Form Input -->
+							{!! Form::checkbox('answer', $answeroption->id, null, ['class' => 'field']) !!}	
+							{!! Form::label('answer', $answeroption->answer) !!}
+						</div>
+					@endforeach
+				</fieldset>
+
+          	@endif
 			<ul>
-				@foreach($question->answeroptions as $answeroption)
-					<li>
-						{{ $answeroption->answer }}
-					</li>
-				@endforeach
 			</ul>
-		
+			<a href=" {{ URL::route('questions.show', $question) }} " class="edit">Bewerk vraag</a>
 		</li>
 	@endforeach
 	</ul>
-	<ul class="questionionables">
+	<ul class="questionables">
 		<li class="questionable">
-			<a href=" {{ URL::route('questions.createforquest', $quest) }} ">add a question</a>
+			<a href=" {{ URL::route('questions.createforquest', $quest) }} "> + voeg een vraag toe</a>
 		</li>
 	</ul>
 
